@@ -1,4 +1,4 @@
-package com.callor.hello;
+package com.callor.hello.data;
 
 public class HelloData {
 	
