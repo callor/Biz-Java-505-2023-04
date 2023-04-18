@@ -1,4 +1,4 @@
-package com.callor.controller;
+package com.callor.controller.var;
 
 public class VarA {
 	public static void main(String[] args) {
