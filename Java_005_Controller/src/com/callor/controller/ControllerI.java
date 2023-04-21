@@ -8,7 +8,9 @@ public class ControllerI {
 				break;
 			}
 		}
+
 		boolean yesPrime = rndNum <= index;
+
 		return yesPrime;
 	}
 	/*
