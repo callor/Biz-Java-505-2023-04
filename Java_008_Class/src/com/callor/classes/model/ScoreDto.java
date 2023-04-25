@@ -34,5 +34,21 @@ public class ScoreDto {
 	public int intMusic;
 	public int intArt;
 	public int intSport;
+	
+	public int getTotal() {
+		int total = this.intKor;
+		total += this.intEng;
+		total += this.intMath;
+		total += this.intHistory;
+		total += this.intMusic;
+		total += this.intArt;
+		total += this.intSport;
+		return total;
+	}
+	public float getAvg() {
+		int total = this.getTotal();
+		float avg = (float)total / 7;
+		return avg;
+	}
 
 }
