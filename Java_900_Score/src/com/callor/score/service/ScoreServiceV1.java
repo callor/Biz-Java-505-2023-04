@@ -39,7 +39,12 @@ public class ScoreServiceV1 {
 		this.scoreList = scoreList;
 	}
 	
-	public int getScore() {
+	/*
+	 * private 접근제한자가 선언된 method
+	 * 이 method 는 같은 클래스 scope 의 method 들만
+	 * 사용할수 있도록 하는 것
+	 */
+	private int getScore() {
 		return (int)(Math.random() * 50) + 51;
 	}
 	
