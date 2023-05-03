@@ -20,17 +20,22 @@ public class StudentServiceV1 {
 
 		System.out.print("학과 >> ");
 		String stDept = scan.nextLine();
-
-		System.out.print("학년 >> ");
-		String stGrade = scan.nextLine();
+		
 		int intGrade = 0;
-		try {
-			intGrade = Integer.valueOf(stGrade);
-		} catch (Exception e) {
-			System.out.println("학년은 정수로만 입력하세요");
-		}
-		if(intGrade < 1 || intGrade > 4) {
-			System.out.println("학년은 1 ~ 4 범위에서 입력하세요");
+		while(true) {
+			System.out.print("학년 >> ");
+			String stGrade = scan.nextLine();
+			try {
+				intGrade = Integer.valueOf(stGrade);
+			} catch (Exception e) {
+				System.out.println("학년은 정수로만 입력하세요");
+				continue;
+			}
+			if(intGrade < 1 || intGrade > 4) {
+				System.out.println("학년은 1 ~ 4 범위에서 입력하세요");
+				continue;
+			}
+			break;
 		}
 
 		System.out.print("전화번호 >> ");
