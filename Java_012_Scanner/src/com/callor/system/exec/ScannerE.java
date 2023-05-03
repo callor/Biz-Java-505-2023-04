@@ -8,18 +8,18 @@ public class ScannerE {
 		Scanner scan = new Scanner(System.in);
 		int num1 = 0;
 		int num2 = 0;
-		while(true) {
+		while (true) {
 			System.out.println("두 개의 정수를 입력하세요");
 			String strNum1 = "";
 			String strNum2 = "";
-			while(true) {
+			while (true) {
 				System.out.print("정수1 ( QUIT:종료 ) >> ");
 				strNum1 = scan.nextLine();
-				if(strNum1.equals("QUIT")) {
+				if (strNum1.equals("QUIT")) {
 					break;
 				}
 				try {
-					num1 = Integer.valueOf(strNum1);	
+					num1 = Integer.valueOf(strNum1);
 				} catch (Exception e) {
 					// TODO: handle exception
 					System.out.println("정수1은 정수값만 입력해야 합니다");
@@ -27,14 +27,14 @@ public class ScannerE {
 				}
 				break;
 			}
-			if(strNum1.equals("QUIT")) {
+			if (strNum1.equals("QUIT")) {
 				break;
 			}
 
-			while(true) {
+			while (true) {
 				System.out.printf("정수2 ( QUIE:종료 ) >> ");
 				strNum2 = scan.nextLine();
-				if(strNum2.equals("QUIT")) {
+				if (strNum2.equals("QUIT")) {
 					break;
 				}
 				try {
@@ -46,21 +46,17 @@ public class ScannerE {
 				}
 				break;
 			}
-			if(strNum2.equals("QUIT")) {
+			if (strNum2.equals("QUIT")) {
 				break;
 			}
-			System.out.printf("%d + %d = %d\n", 
-						num1, num2, num1 + num2);
-			System.out.printf("%d - %d = %d\n", 
-					num1, num2, num1 - num2);
-			System.out.printf("%d x %d = %d\n", 
-					num1, num2, num1 * num2);
-			System.out.printf("%d ÷ %d = %d\n", 
-					num1, num2, num1 / num2);
+			System.out.printf("%d + %d = %d\n", num1, num2, num1 + num2);
+			System.out.printf("%d - %d = %d\n", num1, num2, num1 - num2);
+			System.out.printf("%d x %d = %d\n", num1, num2, num1 * num2);
+			System.out.printf("%d ÷ %d = %d\n", num1, num2, num1 / num2);
+			
 		}
 		System.out.println("GAME OVER");
-		
-		
+
 	}
-	
+
 }
