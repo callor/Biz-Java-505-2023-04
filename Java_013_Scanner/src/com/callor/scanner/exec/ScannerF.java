@@ -2,6 +2,8 @@ package com.callor.scanner.exec;
 
 import java.util.Scanner;
 
+import com.callor.scanner.config.PublicConfig;
+
 public class ScannerF {
 
 	public static void main(String[] args) {
@@ -25,9 +27,13 @@ public class ScannerF {
 			if(searchIndex < nums.length) {
 				continue;
 			}
-			System.out.println(rndNum);
+
 			// 여기에 도달하면 rndNum 는 중복되지 않은 랜덤수
 			while(true) {
+				
+				System.out.println( PublicConfig.dLine );
+				System.out.println(rndNum);
+				
 				System.out.print("정수 입력(QUIT : 종료) >> ");
 				String strNum = scan.nextLine();
 				if(strNum.equals("QUIT")) {
@@ -42,6 +48,8 @@ public class ScannerF {
 					System.out.println("정수만 입력하세요!!");
 					continue;
 				}
+				
+				System.out.println( PublicConfig.sLine );
 				
 				if(intNum < 0 || intNum > 45) {
 					System.out.println("1 ~ 45 범위의 정수 값을 입력하세요");

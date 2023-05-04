@@ -2,10 +2,14 @@ package com.callor.scanner.exec;
 
 import java.util.Scanner;
 
+import com.callor.scanner.config.PublicConfig;
+
 public class ScannerFA {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		
+		int lottoGameNums = 45;
 		
 		// 정수형 배열 6개를 만들어라
 		// 정수형 요소 6개를 갖는 nums 배열 생성
@@ -14,18 +18,20 @@ public class ScannerFA {
 		
 		// nums 배열 요소에 한번도 저장되지 않은 rndNum 값 찾기(만들기)
 		while(true) {
-			int rndNum = (int)(Math.random() * 45) + 1;	
-
+			int rndNum = (int)(Math.random() * lottoGameNums) + 1;	
 			for(int i = 0 ; i < nums.length ; i++) {
 				if(nums[i] == rndNum) {
-					rndNum = (int)(Math.random() * 45) + 1;
+					rndNum = (int)(Math.random() * lottoGameNums) + 1;
 					i = -1 ;
 				}
 			}
 			
-			System.out.println(rndNum);
 			// 여기에 도달하면 rndNum 는 중복되지 않은 랜덤수
+
 			while(true) {
+				
+				System.out.println(PublicConfig.dLine(100));
+				System.out.println(rndNum);
 				System.out.print("정수 입력(QUIT : 종료) >> ");
 				String strNum = scan.nextLine();
 				if(strNum.equals("QUIT")) {
@@ -40,6 +46,8 @@ public class ScannerFA {
 					System.out.println("정수만 입력하세요!!");
 					continue;
 				}
+				
+				System.out.println(PublicConfig.sLine(100));
 				
 				if(intNum < 0 || intNum > 45) {
 					System.out.println("1 ~ 45 범위의 정수 값을 입력하세요");
