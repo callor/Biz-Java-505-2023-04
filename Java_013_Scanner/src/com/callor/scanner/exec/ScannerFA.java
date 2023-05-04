@@ -2,7 +2,7 @@ package com.callor.scanner.exec;
 
 import java.util.Scanner;
 
-public class ScannerF {
+public class ScannerFA {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -15,16 +15,14 @@ public class ScannerF {
 		// nums 배열 요소에 한번도 저장되지 않은 rndNum 값 찾기(만들기)
 		while(true) {
 			int rndNum = (int)(Math.random() * 45) + 1;	
-			int searchIndex;
-			for(searchIndex = 0 ; searchIndex < nums.length ; searchIndex++) {
-				if(nums[searchIndex] == rndNum) {
-					break;
+
+			for(int i = 0 ; i < nums.length ; i++) {
+				if(nums[i] == rndNum) {
+					rndNum = (int)(Math.random() * 45) + 1;
+					i = -1 ;
 				}
 			}
-			// rndNum 에 저장된 값이 nums 요소에 있으면 다시 while() 처음으로
-			if(searchIndex < nums.length) {
-				continue;
-			}
+			
 			System.out.println(rndNum);
 			// 여기에 도달하면 rndNum 는 중복되지 않은 랜덤수
 			while(true) {
