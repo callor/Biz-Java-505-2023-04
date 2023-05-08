@@ -18,6 +18,9 @@ public class ClassC {
 		
 		// 배열요소 전부를 반복하는 확장된 for 반복문(for Each)
 		// 0 번 index 부터 배열 끝 index 까지 무조건 반복
+		// nums 배열요소를 모두 펼쳐 놓고, 0 index 요소 부터
+		// 끝 index 요소까지 순서대로 num 변수에 저장하여 {} 코드에서
+		// 사용할수 있도록 한다.
 		for(int num : nums) {
 			System.out.print(num + "\t");
 		}
