@@ -2,6 +2,15 @@ package com.callor.classes.models;
 
 public class StdData {
 	
+	public static final int ST_NUM = 0;
+	public static final int ST_NAME = 1;
+	public static final int ST_DEPT = 2;
+	public static final int ST_GRADE = 3;
+	public static final int ST_PROF = 4;
+	public static final int ST_TEL = 5;
+	public static final int ST_ADDRESS = 6;
+	
+	
 	// 10 명 학생 데이터를 각 요소에 저장한 문자열 배열 STUDENT 선언
 	// static : 클래스를 통해서 직접 접근 가능한 변수가 된다
 	// final : 이 배열의 데이터는 아무도 수정하지 못한다.

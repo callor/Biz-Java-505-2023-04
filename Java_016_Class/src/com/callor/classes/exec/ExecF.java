@@ -55,6 +55,9 @@ public class ExecF {
 		 * 배열은 코드가 실행	| List 는 필요에 따라 size() 가 변경될수
 		 * 되는 도중에 			| 있다
 		 * 크기를 변경 불가		|
+		 * 
+		 * 						| remove(index) method 를 통해서
+		 * 						| index 위치의 item 을 제거할 수 있다
 		 */
 		
 		
