@@ -8,6 +8,7 @@ public class BookExecC {
 	public static void main(String[] args) {
 		BookService bookService = new BookServiceImplV2();
 		bookService.loadBook();
+		bookService.printBoookList();
 		
 	}
 

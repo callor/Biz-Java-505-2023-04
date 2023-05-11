@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.callor.books.config.DataIndex;
+import com.callor.books.config.Utils;
 import com.callor.books.models.BookDto;
 import com.callor.books.service.BookService;
 
@@ -63,8 +64,37 @@ public class BookServiceImplV2 implements BookService{
 
 	@Override
 	public void printBoookList() {
-		// TODO Auto-generated method stub
 		
+		String[] printTitle = "ISBN,도서명,출판사,저자,출판일,페이지,가격".split(",");
+
+		System.out.println(Utils.dLine(100));
+		
+		System.out.printf("%-13s\t",printTitle[ DataIndex.BOOK.ISBN ]);
+		System.out.printf("%-20s\t\t",printTitle[ DataIndex.BOOK.TITLE ]);
+		System.out.printf("%s\t",printTitle[ DataIndex.BOOK.PUBLISHER ] );
+		System.out.printf("%s\t",printTitle[ DataIndex.BOOK.AUTHOR ] );
+		System.out.printf("%s\t",printTitle[ DataIndex.BOOK.PDATE ] );
+		System.out.printf("%s\t\t",printTitle[ DataIndex.BOOK.PAGES ] );
+		System.out.printf("%s\n",printTitle[ DataIndex.BOOK.PRICE ] );
+		
+		System.out.println(Utils.sLine(100));
+		for(BookDto book: bookList) {
+			System.out.printf("%s\t",book.getbIsbn());
+			
+			String bTitle = book.getbTitle();
+			if(bTitle.length() > 10) {
+				System.out.printf("%-20s\t",bTitle.subSequence(0, 10));	
+			} else {
+				System.out.printf("%-20s\t",bTitle);
+			}
+			
+			System.out.printf("%s\t",book.getbPublisher());
+			System.out.printf("%s\t",book.getbAuthor());
+			System.out.printf("%s\t",book.getbPublishDate());
+			System.out.printf("%s\t",book.getbPages());
+			System.out.printf("%s\n",book.getbPrice());
+		}
+		System.out.println(Utils.sLine(100));
 	}
 
 	@Override
