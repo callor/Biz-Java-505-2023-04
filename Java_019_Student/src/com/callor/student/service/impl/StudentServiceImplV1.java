@@ -8,60 +8,82 @@ import com.callor.student.models.StudentDto;
 import com.callor.student.service.StudentService;
 import com.callor.student.utils.Line;
 
-public class StudentServiceImplV1 implements StudentService{
-	
+public class StudentServiceImplV1 implements StudentService {
+
 	protected List<StudentDto> stdList;
 	protected Scanner scan;
+
 	public StudentServiceImplV1() {
 		stdList = new ArrayList<>();
 		scan = new Scanner(System.in);
 	}
-	
+
 	/*
-	 * insertStudent() 는 
-	 * StudentService interface 에 정의되지 않은 method
+	 * insertStudent() 는 StudentService interface 에 정의되지 않은 method
 	 * 
-	 *  이 method 는 상속받은 것이 아니고 V1 클래스에서 임의로
-	 *  생성한 method 이다
-	 *  
+	 * 이 method 는 상속받은 것이 아니고 V1 클래스에서 임의로 생성한 method 이다
+	 * 
 	 */
 	public void insertStudent() {
 
-		System.out.println(Line.dLine(60));
-		System.out.println("학생정보 추가 종료하려면 QUIT 입력");
-		System.out.println(Line.sLine(60));
-		
-		System.out.print("학번 >> ");
-		String stNum = scan.nextLine();
-		
-		System.out.print("이름 >> ");
-		String stName = scan.nextLine();
+		while (true) {
 
-		System.out.print("학과 >> ");
-		String stDept = scan.nextLine();
+			System.out.println(Line.dLine(60));
+			System.out.println("학생정보 추가 종료하려면 QUIT 입력");
+			System.out.println(Line.sLine(60));
 
-		System.out.print("학년 >> ");
-		String stGrade = scan.nextLine();
+			System.out.print("학번 >> ");
+			String stNum = scan.nextLine();
+			if (stNum.equals("QUIT")) break;
 
-		System.out.print("전화번호 >> ");
-		String stTel = scan.nextLine();
-		
-		StudentDto stDto = new StudentDto();
-		stDto.stNum = stNum;
-		stDto.stName = stName;
-		stDto.stDept = stDept;
-		stDto.stGrade = Integer.valueOf(stGrade);
-		stDto.stTel = stTel;
+			System.out.print("이름 >> ");
+			String stName = scan.nextLine();
+			if (stNum.equals("QUIT")) break;
 
-		stdList.add(stDto);
-		
+			System.out.print("학과 >> ");
+			String stDept = scan.nextLine();
+			if (stNum.equals("QUIT")) break;
+
+			int intGrade = 0;
+			while (true) {
+				System.out.print("학년 >> ");
+				String strGrade = scan.nextLine();
+				if (stNum.equals("QUIT")) break;
+				try {
+					intGrade = Integer.valueOf(strGrade);
+				} catch (Exception e) {
+					// TODO: handle exception'
+					System.out.println("학년은 정수로 입력하세요");
+					continue;
+				}
+				if (intGrade < 1 || intGrade > 4) {
+					System.out.println("학년은 정수 1 ~ 4까지만 입력하세요");
+					continue;
+				}
+				break;
+			}
+			if(intGrade == 0) break;
+
+			System.out.print("전화번호 >> ");
+			String stTel = scan.nextLine();
+			if (stNum.equals("QUIT")) break;
+
+			StudentDto stDto = new StudentDto();
+			stDto.stNum = stNum;
+			stDto.stName = stName;
+			stDto.stDept = stDept;
+			stDto.stGrade = intGrade;
+			stDto.stTel = stTel;
+			stdList.add(stDto);
+
+		} // end while
+		System.out.println("학생정보 입력 종료!!");
 	}
-	
-	
+
 	@Override
 	public void loadStudent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -72,11 +94,11 @@ public class StudentServiceImplV1 implements StudentService{
 		System.out.println(Line.dLine(100));
 		System.out.println("학번\t이름\t학과\t학년\t전화번호");
 		System.out.println(Line.sLine(100));
-		if(stdList == null || stdList.size() < 1) {
+		if (stdList == null || stdList.size() < 1) {
 			System.out.println("표시할 데이터가 없음");
 			return;
 		}
-		for(StudentDto dto : stdList) {
+		for (StudentDto dto : stdList) {
 			System.out.printf("%s\t", dto.stNum);
 			System.out.printf("%s\t", dto.stName);
 			System.out.printf("%s\t", dto.stDept);
