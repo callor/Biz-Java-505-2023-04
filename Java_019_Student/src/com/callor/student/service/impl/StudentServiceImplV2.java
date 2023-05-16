@@ -59,21 +59,34 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 			}
 		}
 
-		System.out.print("이름 >> ");
+		System.out.printf("이름(%s) >> ",
+				stDto.stName == null ? "신규" : stDto.stName);
 		String stName = scan.nextLine();
+		if(stName.equals("")) {
+			stName = stDto.stName;
+		}
 		if (stName.equals("QUIT")) return null;
 
-		System.out.print("학과 >> ");
+		System.out.printf("학과(%s) >> ",
+				stDto.stDept == null ? "신규" : stDto.stDept);
 		String stDept = scan.nextLine();
 		if (stDept.equals("QUIT")) return null;
+		if(stDept.equals("")) {
+			stDept = stDto.stDept;
+		}
 
 		int intGrade = 0;
 		while (true) {
-			System.out.print("학년 >> ");
+			System.out.printf("학년(%d) >> ",
+					stDto.stGrade == 0 ? 0 : stDto.stGrade);
 			String strGrade = scan.nextLine();
 			if (strGrade.equals("QUIT")) break;
 			try {
-				intGrade = Integer.valueOf(strGrade);
+				if(stDto.stGrade != 0 && strGrade.equals("")) {
+					intGrade = stDto.stGrade;
+				} else {
+					intGrade = Integer.valueOf(strGrade);
+				}
 			} catch (Exception e) {
 				// TODO: handle exception'
 				System.out.println("학년은 정수로 입력하세요");
@@ -87,9 +100,12 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 		}
 		if(intGrade == 0)  return null;
 
-		System.out.print("전화번호 >> ");
+		System.out.printf("전화번호(%s) >> ",stDto.stTel);
 		String stTel = scan.nextLine();
 		if (stTel.equals("QUIT"))  return null;
+		if(stTel.equals("")) {
+			stTel = stDto.stTel;
+		}
 		
 		stDto.stNum = stNum;
 		stDto.stName = stName;
@@ -187,7 +203,47 @@ public class StudentServiceImplV2 extends StudentServiceImplV1 {
 				System.out.println(rows + " 라인에서 Exception 발생");
 			}
 		}
-		scan.close();
 		System.out.println("Load 한 데이터 개수 : " + stdList.size());
 	}
+	
+	public void deleteStudent() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println(Line.dLine(100));
+		System.out.println("학생정보 삭제, 삭제할 학번을 입력");
+		System.out.print("학번(Enter : 종료) >> ");
+		String stNum = scan.nextLine();
+		if(stNum.equals("")) {
+			return ;
+		}
+		StudentDto stDto = null;
+//		for(StudentDto dto : stdList) {
+//			if(dto.stNum.equals(stNum)) {
+//				stDto = dto;
+//				break;
+//			}
+//		}
+		
+		int index = 0;
+		for(index = 0 ; index < stdList.size(); index++) {
+			if(stdList.get(index).stNum.equals(stNum)) {
+				System.out.println(Line.sLine(100));
+				System.out.println(stdList.get(index));
+				System.out.println(Line.sLine(100));
+				break;
+			}
+		}
+		if(index < stdList.size()) {
+			System.out.println("학생정보를 삭제 할까요?(Y/N)");
+			String yesNo = scan.nextLine();
+			if(yesNo.equals("Y")) {
+				stdList.remove(index);
+			}
+		}
+		return;
+		
+		
+		
+	}
+	
+	
 }
