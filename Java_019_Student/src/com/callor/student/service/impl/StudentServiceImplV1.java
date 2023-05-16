@@ -32,9 +32,23 @@ public class StudentServiceImplV1 implements StudentService {
 			System.out.println("학생정보 추가 종료하려면 QUIT 입력");
 			System.out.println(Line.sLine(60));
 
-			System.out.print("학번 >> ");
-			String stNum = scan.nextLine();
-			if (stNum.equals("QUIT")) break;
+			
+			String stNum  = "";
+			while(true) {
+				System.out.print("학번(정수) >> ");
+				stNum = scan.nextLine();
+				if (stNum.equals("QUIT")) break;
+				try {
+					int intNum = Integer.valueOf(stNum);
+					stNum = String.format("%04d", intNum);
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("학번은 정수로 입력하세요");
+					continue;
+				}
+				break;
+			}
+			if(stNum.equals("QUIT")) break;
 
 			System.out.print("이름 >> ");
 			String stName = scan.nextLine();
