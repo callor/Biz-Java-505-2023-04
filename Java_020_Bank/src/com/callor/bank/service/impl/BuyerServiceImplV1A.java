@@ -1,11 +1,16 @@
 package com.callor.bank.service.impl;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.callor.bank.models.BuyerDto;
 import com.callor.bank.service.BuyerService;
+import com.callor.bank.utils.Config;
 import com.callor.bank.utils.Line;
 
 public class BuyerServiceImplV1A implements BuyerService{
@@ -24,11 +29,7 @@ public class BuyerServiceImplV1A implements BuyerService{
 		
 	}
 
-	@Override
-	public void printBuyerList() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public BuyerDto getBuyer(String buId) {
@@ -162,5 +163,55 @@ public class BuyerServiceImplV1A implements BuyerService{
 		}
 		System.out.println("고객정보 입력 종료");
 		
+		OutputStream os = null;
+		PrintWriter out = null;
+		
+		try {
+			os = new FileOutputStream(Config.BUYER_FILE);
+			out = new PrintWriter(os);
+			printBuyerList(out);
+			out.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * 화면출력을 위하여 리스트 머릿글 부분을 System.out.println() 으로 출력하고
+	 * System.out 이 연결된 printWiter 를 화면용으로 생성하여
+	 * printBuyerList(PrintWriter) method 에 전달하여 본문 출력
+	 */
+	@Override
+	public void printBuyerList() {
+		// TODO Auto-generated method stub
+		OutputStream os = System.out;
+		PrintWriter out = new PrintWriter(os);
+		
+		System.out.println(Line.dLine(100));
+		System.out.println("고객정보 리스트");
+		System.out.println(Line.dLine(100));
+		System.out.println("고객ID\t고객명\t전화번호\t주소\t생년월일\t직업");
+		printBuyerList(out);
+		out.close();
+		System.out.println(Line.dLine(100));
+	}
+	
+	/*
+	 * 매개변수로 전달받는 PrintWriter 객체의 구분에 따라
+	 * 화면에 출력하거나
+	 * 파일로 출력하기
+	 */
+	@Override
+	public void printBuyerList(PrintWriter out) {
+		for(BuyerDto dto : buyerList) {
+			out.printf("%s\t",dto.buId);
+			out.printf("%s\t",dto.buName);
+			out.printf("%s\t",dto.buTel);
+			out.printf("%s\t",dto.buAddr);
+			out.printf("%s\t",dto.buBirth);
+			out.printf("%s\n",dto.buJob);
+		}
 	}
 }
