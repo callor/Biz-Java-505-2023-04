@@ -1,7 +1,5 @@
 package com.callor.bank.exec;
 
-import java.io.PrintWriter;
-
 import com.callor.bank.service.BuyerService;
 import com.callor.bank.service.impl.BuyerServiceImplV1A;
 
