@@ -56,10 +56,17 @@ public class BuyerServiceImplV1A implements BuyerService{
 	}
 
 
-
+	// 고객 ID 를 전달받아 고객정보(Dto)를 return
 	@Override
 	public BuyerDto getBuyer(String buId) {
-		// TODO Auto-generated method stub
+		if(buyerList.isEmpty()) {
+			loadBuyer();
+		}
+		for(BuyerDto dto : buyerList) {
+			if(dto.buId.equals(buId)) {
+				return dto;
+			}
+		}
 		return null;
 	}
 	
