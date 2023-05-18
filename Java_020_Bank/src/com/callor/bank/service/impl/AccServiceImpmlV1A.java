@@ -65,13 +65,17 @@ public class AccServiceImpmlV1A implements AccService{
 			numBank = accNum.substring(0,4);
 			
 			// 날짜 부분 추출하기	
-			String numDate = accNum.substring(5, todayString.length());
+			String numDate = accNum.substring(5, 
+					String.format("%s-%s",numBank,todayString).length());
 			
 			if(numDate.equals(todayString)) {
 				// 일련번호 부분만 추출하기
-				String lastNum = accNum.substring(numBank.length() + todayString.length());
+				String lastNum = accNum.substring(
+						String.format("%s-%s-",numBank,todayString).length() );
+				
 				int intNum = Integer.valueOf(lastNum);
-				if(maxNum > intNum) maxNum = intNum;
+				if(intNum > maxNum) maxNum = intNum;
+				
 			}
 		} // end for
 		
