@@ -31,6 +31,7 @@ public class DeckServiceImplV1  implements DeckService {
 	
 	// shuffle 된 carDeck 에 한장씩 카드를 제출하기
 	public CardDto getDeck() {
+		if(cardDeck.isEmpty()) newCardDeck();
 		try {
 			return cardDeck.remove(0);
 		} catch (Exception e) {

@@ -7,5 +7,6 @@ public interface PlayerService {
 	public void hit(CardDto card);
 	public void showDeck();
 	public int getScore() ;
+	public String getPlayName();
 
 }
