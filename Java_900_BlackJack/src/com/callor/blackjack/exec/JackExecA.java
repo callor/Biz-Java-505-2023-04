@@ -1,20 +1,19 @@
 package com.callor.blackjack.exec;
 
-import java.util.List;
-
-import com.callor.blackjack.models.CardDto;
-import com.callor.blackjack.service.DeckServiceV1;
-import com.callor.blackjack.service.PlayerServiceV1;
+import com.callor.blackjack.service.DeckService;
+import com.callor.blackjack.service.PlayerService;
+import com.callor.blackjack.service.impl.DeckServiceImplV1;
+import com.callor.blackjack.service.impl.PlayerServiceImplV1;
 
 public class JackExecA {
 	
 	public static void main(String[] args) {
 		
-		DeckServiceV1 deckService = new DeckServiceV1();
+		DeckService deckService = new DeckServiceImplV1();
 		
-		PlayerServiceV1 딜러 = new PlayerServiceV1();
-		PlayerServiceV1 타자 = new PlayerServiceV1("타짜");
-		PlayerServiceV1 영수 = new PlayerServiceV1("영수");
+		PlayerService 딜러 = new PlayerServiceImplV1();
+		PlayerService 타자 = new PlayerServiceImplV1("타짜");
+		PlayerService 영수 = new PlayerServiceImplV1("영수");
 		
 		deckService.newCardDeck();
 		
@@ -42,11 +41,5 @@ public class JackExecA {
 			System.out.println("영수 승리");
 		}
 		
-		
-		
-		
-		
-		
 	}
-
 }

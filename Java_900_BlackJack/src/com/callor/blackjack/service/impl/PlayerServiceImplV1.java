@@ -1,10 +1,10 @@
-package com.callor.blackjack.service;
+package com.callor.blackjack.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import com.callor.blackjack.models.CardDto;
+import com.callor.blackjack.service.PlayerService;
 import com.callor.blackjack.utils.Line;
 
 /*
@@ -12,11 +12,10 @@ import com.callor.blackjack.utils.Line;
  * showDeck() : 보유한 카드 보이기
  * showScore() : 보유한 카드의 점수 보이기
  */
-public class PlayerServiceV1 {
+public class PlayerServiceImplV1 implements PlayerService{
 	
 	// player 가 get(취득한, hit한) 카드를 저장할 list
 	protected final List<CardDto> deckList;
-//	protected final DeckServiceV1 deckService;
 	protected final String playerName;
 
 	/*
@@ -25,13 +24,12 @@ public class PlayerServiceV1 {
 	 * new PlayerService("타짜") 으로 생성자를 호출하면
 	 * 		playerName 을 "타짜" 로 설정
 	 */
-	public PlayerServiceV1() {
+	public PlayerServiceImplV1() {
 		this("딜러");
 	}
-	public PlayerServiceV1(String playerName) {
+	public PlayerServiceImplV1(String playerName) {
 		// TODO Auto-generated constructor stub
 		deckList = new ArrayList<>();
-//		deckService = new DeckServiceV1();
 		this.playerName = playerName;
 	}	
 	
@@ -62,10 +60,6 @@ public class PlayerServiceV1 {
 		}
 		return score;
 	}
-	
-	
-	
-	
 	
 
 }

@@ -1,20 +1,21 @@
-package com.callor.blackjack.service;
+package com.callor.blackjack.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.callor.blackjack.models.CardDto;
+import com.callor.blackjack.service.DeckService;
 
 /*
  * 게임을 위한 52매의 카드 이미지를 생성하기
  * hit를 했을때 사용할 카드 제출하기
  */
-public class DeckServiceV1 {
+public class DeckServiceImplV1  implements DeckService {
 	
 	// 52장의 CardDto를 갖는 List
 	protected final List<CardDto> cardDeck;
-	public DeckServiceV1() {
+	public DeckServiceImplV1() {
 		cardDeck = new ArrayList<>();
 	}
 	
