@@ -12,15 +12,11 @@ import com.callor.bank.config.DBContract;
 import com.callor.bank.models.BuyerDto;
 import com.callor.bank.service.BuyerService;
 
-import oracle.jdbc.proxy.annotation.Pre;
-
 public class BuyerServiceImplV1 implements BuyerService {
 
-	protected final List<BuyerDto> buyerList;
+	
 	protected final Connection dbConn;
 	public BuyerServiceImplV1() {
-		buyerList = new ArrayList<>();
-		
 		// DB 연결을 위한 초기화 된 객체를 가져오기
 		dbConn = DBConnection.getDBConn();
 	}
@@ -45,6 +41,7 @@ public class BuyerServiceImplV1 implements BuyerService {
 	
 	@Override
 	public List<BuyerDto> selectAll() {
+		List<BuyerDto> buyerList = new ArrayList<>();
 		String sql = 
 				" SELECT "
 				+ " buid, buname, butel, buaddr, bubirth, bujob "
