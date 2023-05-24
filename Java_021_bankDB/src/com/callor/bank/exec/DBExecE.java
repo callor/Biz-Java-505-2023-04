@@ -2,6 +2,7 @@ package com.callor.bank.exec;
 
 import java.util.Scanner;
 
+import com.callor.bank.config.BankInfo;
 import com.callor.bank.service.BankService;
 
 public class DBExecE {
@@ -11,9 +12,9 @@ public class DBExecE {
 		BankService bankService = new BankService();
 		
 		while(true) {
-			System.out.println("=".repeat(100));
-			System.out.println("대한은행 고객관리 시스템");
-			System.out.println("=".repeat(100));
+			
+			BankInfo.headerPrint();
+			
 			System.out.println("수행할 업무를 선택하세요");
 			System.out.println("  1. 고객 추가");
 			System.out.println("  2. 고객 정보 수정");
@@ -38,6 +39,7 @@ public class DBExecE {
 			else if(intSelect == 2) bankService.update();
 			else if(intSelect == 3) bankService.delete();
 			else if(intSelect == 4) bankService.printBuyerList();
+			else if(intSelect == 5) bankService.findUserInfo();
 		}
 		System.out.println("업무끝 ~! 야 퇴근이다@@@");
 	}

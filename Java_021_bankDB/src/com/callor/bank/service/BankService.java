@@ -3,8 +3,12 @@ package com.callor.bank.service;
 import java.util.List;
 import java.util.Scanner;
 
+import com.callor.bank.config.DBContract;
+import com.callor.bank.models.AccDto;
 import com.callor.bank.models.BuyerDto;
+import com.callor.bank.service.impl.AccServiceV1;
 import com.callor.bank.service.impl.BuyerServiceImplV1;
+import com.callor.bank.utils.Line;
 
 public class BankService {
 	
@@ -12,8 +16,10 @@ public class BankService {
 	
 	protected List<BuyerDto> buyerList;
 	protected final BuyerService buyerService;
+	protected final AccService accService;
 	
 	public BankService() {
+		accService = new AccServiceV1();
 		buyerService = new BuyerServiceImplV1();
 		scan = new Scanner(System.in);
 	}
@@ -127,9 +133,55 @@ public class BankService {
 			
 			break;
 		}
+	}
+	
+	public void findUserInfo() {
 		
+		this.printBuyerList();
 		
+		System.out.println("조회할 고객ID를 입력하세요");
+		System.out.print("고객ID >> ");
+		String strBuId = scan.nextLine();
 		
+		BuyerDto buyerDto = buyerService.findById(strBuId);
+		
+		if(buyerDto == null) {
+			System.out.println("고객ID 가 없습니다");
+			return ;
+		} else {
+			System.out.println(Line.sLine(100));
+			System.out.printf("고객ID :  %s\n",buyerDto.buId);
+			System.out.printf("이름 :  %s\n",buyerDto.buName);
+			System.out.printf("전화번호 :  %s\n",buyerDto.buTel);
+			System.out.printf("주소 :  %s\n",buyerDto.buAddr);
+			System.out.println(Line.sLine(100));
+		}
+		
+		List<AccDto> accList = accService.findByBuId(strBuId);
+		if(accList.isEmpty()) {
+			System.out.println("고객의 계좌정보가 없습니다");
+			return;
+		} else {
+			System.out.println(Line.sLine(100));
+			System.out.println("계좌번호\t구분\t잔액");
+			System.out.println(Line.sLine(100));
+			for(AccDto accDto : accList) {
+				System.out.printf("%s\t",accDto.acNum);
+				
+				int intDiv = 0;
+				try {
+					intDiv = Integer.valueOf(accDto.acDiv);
+					
+					System.out.printf("%s\t",
+							DBContract.ACC_DIV[intDiv - 1]);
+					
+				} catch (Exception e) {
+					System.out.printf("%s\t","종류불명");
+				}
+				System.out.printf("%d\n",accDto.acBalance);
+			}
+			System.out.println(Line.sLine(100));
+		}
 		
 	}
 	
