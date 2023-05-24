@@ -1,5 +1,7 @@
 package com.callor.bank.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -185,6 +187,41 @@ public class BankService {
 		
 	}
 	
+	
+	public void makeAccount() {
+		/*
+		 * 계좌번호 만들기 : 날짜 + 일련번호
+		 * 1. 오늘날짜의 문자열 만들기
+		 * 2. 계좌리스트에 오늘날짜에 해당하는 값이 있는지 검사
+		 * 		있으면 일련번호 추출하여 + 1하고
+		 * 		없으면 1로 설정
+		 */
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat today = new SimpleDateFormat("YYYYMMdd");
+		
+		// 오늘날짜의 문자열을 만들기(20230524)
+		String todayString = today.format(date);
+
+		
+//		List<AccDto> accList = accService.selectAll();
+//		int maxNum = 0 ;
+//		for(AccDto accDto : accList) {
+//			String tempDate = accDto.acNum.substring(0,todayString.length());
+//			// 날짜와 같은 데이터 있으면 일련번호 추출
+//			if(tempDate.equals(todayString)) {
+//				String strNum = accDto.acNum.substring(todayString.length());
+//				int intNum = Integer.valueOf(strNum);
+//				if(intNum > maxNum) maxNum = intNum;
+//			}
+//		}
+//		maxNum ++;
+		
+		int maxNum = Integer.valueOf(accService.maxAcNum(todayString)) + 1;
+		String acNum = String.format("%s%03d",todayString, maxNum);
+		System.out.println("계좌번호 : " + acNum);
+		
+		
+	}
 	
 	
 
