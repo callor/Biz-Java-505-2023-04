@@ -145,6 +145,8 @@ public class AccServiceV1 implements AccService {
 				+ " WHERE  substr(acNum,0,8) = ? ";
 		try {
 			PreparedStatement pStr = dbConn.prepareStatement(sql);
+			pStr.setString(1, date);
+			
 			ResultSet result = pStr.executeQuery();
 			if(result.next()) {
 				return result.getString(1);
