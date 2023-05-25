@@ -237,7 +237,11 @@ public class BankService {
 			System.out.println(Line.sLine(100));
 			System.out.print("계좌번호 >> ");
 			String acNum = scan.nextLine();
+			
+			// 계좌번호를 사용하여 tbl_acc 테이블에서 데이터 조회
+			// accDto 에는 acNum 계좌번호에 해당하는 데이터가 모두 담긴 상태
 			AccDto accDto = accService.findById(acNum);
+			
 			if(accDto == null) {
 				System.out.printf("계좌번호를 확인하세요( %s )",acNum);
 				continue;
@@ -314,8 +318,6 @@ public class BankService {
 			accService.update(accDto);
 			
 		}
-		
-		
 		
 	}
 	

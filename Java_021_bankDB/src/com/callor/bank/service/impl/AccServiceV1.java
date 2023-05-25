@@ -107,15 +107,20 @@ public class AccServiceV1 implements AccService {
 		return 0;
 	}
 
+	/*
+	 * 계좌정보 전체(또는 부분)을 Update 하는 method
+	 * SQL 을 보면 전체 칼럼을 모두 Update 하고 있다
+	 * Update() method 를 호출하는 곳에서는 반드시 AccDto 객체를 잘 관리해야 한다
+	 * 		변경할 칼럼의 데이터만 변경하고
+	 * 		그렇지 않을(변경하지 않을) 칼럼은 원래 값을 그대로 유지
+	 */
 	@Override
 	public int update(AccDto dto) {
-
 		String sql = " UPDATE tbl_acc SET "
 				+ " acBuid = ?, "
 				+ " acDiv = ?, "
 				+ " acBalance = ? "
 				+ " WHERE acNum  = ? ";
-		
 		try {
 			PreparedStatement pStr =  dbConn.prepareStatement(sql);
 			pStr.setString(1, dto.acBuId);
