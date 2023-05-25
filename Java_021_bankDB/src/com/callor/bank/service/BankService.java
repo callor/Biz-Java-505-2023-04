@@ -201,7 +201,6 @@ public class BankService {
 		
 		// 오늘날짜의 문자열을 만들기(20230524)
 		String todayString = today.format(date);
-
 		
 //		List<AccDto> accList = accService.selectAll();
 //		int maxNum = 0 ;
@@ -217,9 +216,8 @@ public class BankService {
 //		maxNum ++;
 		
 		int maxNum = Integer.valueOf(accService.maxAcNum(todayString)) + 1;
-		String acNum = String.format("%s%03d",todayString, maxNum);
+		String acNum = String.format("%s%02d",todayString, maxNum);
 		System.out.println("계좌번호 : " + acNum);
-		
 		
 	}
 	
