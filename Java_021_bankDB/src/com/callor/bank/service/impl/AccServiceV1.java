@@ -77,11 +77,15 @@ public class AccServiceV1 implements AccService {
 
 	@Override
 	public AccDto findById(String acNum) {
-		String sql = " SELECT acNum, acDiv,acBuId,acBalance " + " FROM tbl_acc " + " WHERE acNum = ? ";
+		String sql = " SELECT acNum, acDiv,acBuId,acBalance " 
+					+ " FROM tbl_acc " 
+					+ " WHERE acNum = ? ";
 
 		PreparedStatement pStr;
 		try {
 			pStr = dbConn.prepareStatement(sql);
+			pStr.setString(1, acNum);
+			
 			ResultSet result = pStr.executeQuery();
 
 			if (result.next()) {
@@ -105,7 +109,27 @@ public class AccServiceV1 implements AccService {
 
 	@Override
 	public int update(AccDto dto) {
-		// TODO Auto-generated method stub
+
+		String sql = " UPDATE tbl_acc SET "
+				+ " acBuid = ?, "
+				+ " acDiv = ?, "
+				+ " acBalance = ? "
+				+ " WHERE acNum  = ? ";
+		
+		try {
+			PreparedStatement pStr =  dbConn.prepareStatement(sql);
+			pStr.setString(1, dto.acBuId);
+			pStr.setString(2, dto.acDiv);
+			pStr.setInt(3, dto.acBalance);
+			pStr.setString(4, dto.acNum);
+			return pStr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+		
 		return 0;
 	}
 

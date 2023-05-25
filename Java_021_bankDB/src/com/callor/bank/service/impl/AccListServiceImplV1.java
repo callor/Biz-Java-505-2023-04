@@ -54,16 +54,12 @@ public class AccListServiceImplV1 implements AccListService{
 			// 쿼리 실행하는 method
 			// SELECT : executeQuery(), 
 			// INSERT, UPDATE, DELETE  : executeUpdate()
-			pStr.executeUpdate();
-			
+			return pStr.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		return 0;
-		
 	}
 
 	@Override
