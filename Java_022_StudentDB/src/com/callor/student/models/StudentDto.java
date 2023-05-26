@@ -8,7 +8,6 @@ public class StudentDto {
 	public int st_grade;//	NUMBER
 	public String st_tel;//	VARCHAR2(10)
 	
-	
 	public StudentDto() {
 		super();
 		// TODO Auto-generated constructor stub
