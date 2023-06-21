@@ -12,10 +12,10 @@ public class StudentSQL {
 	
 	public static final String STUDENT_UPDATE 
 		= " UPDATE tbl_student "
-				+ "SET st_name = #{st_name} "
-				+ "SET st_dept = #{st_dept} "
-				+ "SET st_grade = #{st_grade}  "
-				+ "SET st_tel = #{st_tel} "
-				+ "WHERE st_num = #{st_num} ";
+				+ " SET st_name = #{st_name}, "
+				+ " 	st_dept = #{st_dept}, "
+				+ " 	st_grade = #{st_grade},  "
+				+ " 	st_tel = #{st_tel} "
+				+ " WHERE st_num = #{st_num} ";
 
 }

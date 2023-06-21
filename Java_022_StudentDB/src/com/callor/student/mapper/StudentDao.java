@@ -32,7 +32,7 @@ public interface StudentDao {
 	@Select( " SELECT * FROM tbl_student WHERE st_num = #{id} ")
 	public StudentDto findById(String id);
 
-	@Select( " SELECT * FROM tbl_student WHERE st_name= #{name} ")
+	@Select( " SELECT * FROM tbl_student WHERE st_name LIKE '%' || #{name} || '%' ")
 	public List<StudentDto> findByName(String name);
 	
 	@Delete(" DELETE FROM tbl_student WHERE st_num = #{id} ")
