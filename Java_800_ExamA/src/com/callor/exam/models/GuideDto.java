@@ -18,15 +18,8 @@ public class GuideDto {
 		this.seq = seq;
 		this.guide = guide;
 	}
-
-
-
 	@Override
 	public String toString() {
 		return "GuideDto [id=" + id + ", item=" + item + ", seq=" + seq + ", guide=" + guide + "]";
 	}
-	
-	
-	
-
 }
